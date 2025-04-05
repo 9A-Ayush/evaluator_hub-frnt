@@ -55,7 +55,25 @@ fetch(`${apiURL}/api/endpoint`, {
 ├── css/
 │   └── style.css
 ├── js/
-│   └── main.js
+│    ├── Register.js
+│   ├── auth.js
+│   ├── config.js
+│   ├── dashboard.js
+│   ├── evaluations.js
+│   ├── forgotPassword.js
+│   ├── jewelry.js
+│   ├── login.js
+│   ├── metals.js
+│   ├── navigation.js
+│   ├── profile.js
+│   ├── property.js
+│   ├── reports.js
+│   ├── resetPassword.js
+│   ├── script.js
+│   ├── signup.js
+│   ├── userContext.js
+│   ├── validation.js
+│   └── vehicles.js
 
 ❤️ Acknowledgements
 Made with love for modern evaluation workflows 💎
@@ -64,5 +82,5 @@ Feel free to fork, star, or contribute!
 📬 Contact
 Drop your questions, suggestions, or collab requests 😉
 Email: wemayush@gmail.com
-GitHub: @9A-Ayush
+GitHub: [@9A-Ayush](https://github.com/9A-Ayush)
  
