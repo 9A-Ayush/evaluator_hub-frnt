@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Evaluator's Hub</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-chart-line text-primary me-2"></i>Evaluator's Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Dashboard
+                            
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-tasks me-1"></i>Evaluations
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="evaluations.html">All Evaluations</a></li>
+                            <li><a class="dropdown-item" href="evaluations.html#pending">Pending</a></li>
+                            <li><a class="dropdown-item" href="evaluations.html#completed">Completed</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-primary" href="evaluations.html#new">
+                                <i class="fas fa-plus me-2"></i>New Evaluation
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-coins me-1"></i>Assets
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="assets.html">All Assets</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="metals.html">
+                                <i class="fas fa-coins me-2"></i>Precious Metals
+                            </a></li>
+                            <li><a class="dropdown-item" href="jewelry.html">
+                                <i class="fas fa-gem me-2"></i>Jewelry & Diamonds
+                            </a></li>
+                            <li><a class="dropdown-item" href="property.html">
+                                <i class="fas fa-home me-2"></i>Properties
+                            </a></li>
+                            <li><a class="dropdown-item" href="vehicles.html">
+                                <i class="fas fa-car me-2"></i>Vehicles
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-primary" href="assets.html#new">
+                                <i class="fas fa-plus me-2"></i>Add New Asset
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="reports.html">
+                            <i class="fas fa-file-alt me-1"></i>Reports
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i>
+                            <span id="currentUserName">Loading...</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.html">
+                                <i class="fas fa-id-card me-2"></i>Profile
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <!-- Dashboard Section -->
+        <section id="home">
+            <h2>Dashboard</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Pending Evaluations</h5>
+                            <p class="card-text display-4" id="pendingCount">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Completed Evaluations</h5>
+                            <p class="card-text display-4" id="completedCount">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Evaluations</h5>
+                            <p class="card-text display-4" id="totalCount">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Evaluations Section -->
+        <section id="evaluations" class="mt-5">
+            <h2>Evaluations</h2>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5 class="card-title">Recent Evaluations</h5>
+                                <a href="evaluations.html" class="btn btn-primary">
+                                    View All Evaluations
+                                </a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Title</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th>Due Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="evaluationsList">
+                                        <!-- JavaScript will populate this -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Config and Auth -->
+    <script src="js/config.js"></script>
+    <script src="js/userContext.js"></script>
+    <script src="js/auth.js"></script>
+    <!-- Custom JS -->
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

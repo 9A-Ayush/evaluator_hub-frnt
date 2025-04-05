@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard - Evaluator's Hub</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/style.css">
+        <!-- Config JS -->
+        <script src="js/config.js"></script>
+        <!-- User Context JS -->
+        <script src="js/userContext.js"></script>
+    </head>
+    <body class="bg-light">
+        <!-- Add this right after your opening <body> tag -->
+        <div id="toastContainer" class="toast-container position-fixed top-0 end-0 p-3"></div>
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <i class="fas fa-chart-line text-primary me-2"></i>Evaluator's Hub
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">
+                                <i class="fas fa-home me-1"></i>Dashboard
+                                
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-tasks me-1"></i>Evaluations
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="evaluations.html">All Evaluations</a></li>
+                                <li><a class="dropdown-item" href="evaluations.html#pending">Pending</a></li>
+                                <li><a class="dropdown-item" href="evaluations.html#completed">Completed</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-primary" href="evaluations.html#new">
+                                    <i class="fas fa-plus me-2"></i>New Evaluation
+                                </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-coins me-1"></i>Assets
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="assets.html">All Assets</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="metals.html">
+                                    <i class="fas fa-coins me-2"></i>Precious Metals
+                                </a></li>
+                                <li><a class="dropdown-item" href="jewelry.html">
+                                    <i class="fas fa-gem me-2"></i>Jewelry & Diamonds
+                                </a></li>
+                                <li><a class="dropdown-item" href="property.html">
+                                    <i class="fas fa-home me-2"></i>Properties
+                                </a></li>
+                                <li><a class="dropdown-item" href="vehicles.html">
+                                    <i class="fas fa-car me-2"></i>Vehicles
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-primary" href="assets.html#new">
+                                    <i class="fas fa-plus me-2"></i>Add New Asset
+                                </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="reports.html">
+                                <i class="fas fa-file-alt me-1"></i>Reports
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-user-circle me-1"></i>
+                                <span id="currentUserName">Loading...</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="profile.html">
+                                    <i class="fas fa-id-card me-2"></i>Profile
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2><i class="fas fa-coins me-2 text-warning"></i>Precious Metals</h2>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMetalModal">
+                <i class="fas fa-plus me-2"></i>Add New Metal
+            </button>
+        </div>
+
+        <!-- Metal Categories -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-coins fa-3x text-warning mb-3"></i>
+                        <h5 class="card-title">Gold</h5>
+                        <p class="text-muted">Current Price: ₹63,500/10g</p>
+                        <button class="btn btn-outline-primary" onclick="showMetalDetails('gold')">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-coins fa-3x text-secondary mb-3"></i>
+                        <h5 class="card-title">Silver</h5>
+                        <p class="text-muted">Current Price: ₹75,800/kg</p>
+                        <button class="btn btn-outline-primary" onclick="showMetalDetails('silver')">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-coins fa-3x text-info mb-3"></i>
+                        <h5 class="card-title">Platinum</h5>
+                        <p class="text-muted">Current Price: ₹55,200/10g</p>
+                        <button class="btn btn-outline-primary" onclick="showMetalDetails('platinum')">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Price History Chart -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Price History</h5>
+                <div class="btn-group mb-3">
+                    <button class="btn btn-outline-primary active" onclick="updateChart('1M')">1M</button>
+                    <button class="btn btn-outline-primary" onclick="updateChart('6M')">6M</button>
+                    <button class="btn btn-outline-primary" onclick="updateChart('1Y')">1Y</button>
+                    <button class="btn btn-outline-primary" onclick="updateChart('5Y')">5Y</button>
+                </div>
+                <div class="chart-container" style="height: 400px;">
+                    <canvas id="metalPriceChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metal Inventory Table -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Metal Inventory</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Metal</th>
+                                <th>Weight</th>
+                                <th>Purity</th>
+                                <th>Purchase Date</th>
+                                <th>Purchase Price</th>
+                                <th>Current Value</th>
+                                <th>Gain/Loss</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="metalInventoryList">
+                            <!-- JavaScript will populate this -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Metal Modal -->
+    <div class="modal fade" id="addMetalModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Metal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addMetalForm">
+                        <div class="mb-3">
+                            <label class="form-label">Metal Type</label>
+                            <select class="form-select" required>
+                                <option value="gold">Gold</option>
+                                <option value="silver">Silver</option>
+                                <option value="platinum">Platinum</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Weight</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" required>
+                                <select class="form-select" style="max-width: 100px;">
+                                    <option value="g">Grams</option>
+                                    <option value="kg">Kilograms</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Purity</label>
+                            <select class="form-select" required>
+                                <option value="24k">24K</option>
+                                <option value="22k">22K</option>
+                                <option value="18k">18K</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Purchase Date</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Purchase Price (₹)</label>
+                            <input type="number" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Metal</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom JS -->
+    <script src="../js/metals.js"></script>
+</body>
+</html>

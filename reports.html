@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Evaluator's Hub</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Config JS -->
+    <script src="js/config.js"></script>
+    <!-- User Context JS -->
+    <script src="js/userContext.js"></script>
+</head>
+<body class="bg-light">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-chart-line text-primary me-2"></i>Evaluator's Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Dashboard
+                            
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-tasks me-1"></i>Evaluations
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="evaluations.html">All Evaluations</a></li>
+                            <li><a class="dropdown-item" href="evaluations.html#pending">Pending</a></li>
+                            <li><a class="dropdown-item" href="evaluations.html#completed">Completed</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-primary" href="evaluations.html#new">
+                                <i class="fas fa-plus me-2"></i>New Evaluation
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-coins me-1"></i>Assets
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="assets.html">All Assets</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="metals.html">
+                                <i class="fas fa-coins me-2"></i>Precious Metals
+                            </a></li>
+                            <li><a class="dropdown-item" href="jewelry.html">
+                                <i class="fas fa-gem me-2"></i>Jewelry & Diamonds
+                            </a></li>
+                            <li><a class="dropdown-item" href="property.html">
+                                <i class="fas fa-home me-2"></i>Properties
+                            </a></li>
+                            <li><a class="dropdown-item" href="vehicles.html">
+                                <i class="fas fa-car me-2"></i>Vehicles
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-primary" href="assets.html#new">
+                                <i class="fas fa-plus me-2"></i>Add New Asset
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="reports.html">
+                            <i class="fas fa-file-alt me-1"></i>Reports
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i>
+                            <span id="currentUserName">Loading...</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.html">
+                                <i class="fas fa-id-card me-2"></i>Profile
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Report Generation</h4>
+                <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#newReportModal">
+                    <i class="fas fa-plus me-1"></i>Generate New Report
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Type</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reportsTableBody">
+                            <!-- Reports will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Report Modal -->
+    <div class="modal fade" id="newReportModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Generate New Report</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="reportForm" class="needs-validation" novalidate>
+                        <!-- Report Type -->
+                        <div class="mb-3">
+                            <label class="form-label">Report Type*</label>
+                            <select class="form-select" name="reportType" required>
+                                <option value="">Select Report Type</option>
+                                <option value="evaluation">Evaluation Report</option>
+                                <option value="asset">Asset Report</option>
+                                <option value="combined">Combined Report</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a report type</div>
+                        </div>
+
+                        <!-- Title -->
+                        <div class="mb-3">
+                            <label class="form-label">Report Title*</label>
+                            <input type="text" class="form-control" name="title" required>
+                            <div class="invalid-feedback">Please enter a report title</div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="mb-3">
+                            <label class="form-label">Report Content*</label>
+                            <textarea class="form-control" name="content" rows="4" required></textarea>
+                            <div class="invalid-feedback">Please enter report content</div>
+                        </div>
+
+                        <!-- Evaluation Selection -->
+                        <div id="evaluationsSection" class="mb-3 d-none">
+                            <label class="form-label">Select Evaluation*</label>
+                            <select class="form-select" name="evaluation">
+                                <option value="">Select an evaluation</option>
+                            </select>
+                            <div class="invalid-feedback">Please select an evaluation</div>
+                        </div>
+
+                        <!-- Findings -->
+                        <div class="mb-3">
+                            <label class="form-label">Findings*</label>
+                            <textarea class="form-control" name="findings" rows="4" required></textarea>
+                            <div class="invalid-feedback">Please enter findings</div>
+                        </div>
+
+                        <!-- Recommendations -->
+                        <div class="mb-3">
+                            <label class="form-label">Recommendations*</label>
+                            <textarea class="form-control" name="recommendations" rows="4" required></textarea>
+                            <div class="invalid-feedback">Please enter recommendations</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="generateReportBtn">
+                                <i class="fas fa-file-alt me-1"></i>Generate Report
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container position-fixed top-0 end-0 p-3"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/userContext.js"></script>
+    <script src="js/reports.js"></script>
+</body>
+</html>

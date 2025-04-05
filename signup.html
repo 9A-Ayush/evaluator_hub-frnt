@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Evaluator's Hub</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0d6efd20 0%, #0dcaf020 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .signup-container {
+            max-width: 500px;
+            margin: 20px auto;
+            animation: slideUp 0.5s ease;
+        }
+
+        .brand-title {
+            color: #0d6efd;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .card-body {
+            padding: 40px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+            color: #495057;
+        }
+
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+            background-color: #ffffff;
+        }
+
+        .input-group .btn {
+            border-top-right-radius: 10px !important;
+            border-bottom-right-radius: 10px !important;
+            padding: 12px;
+            background-color: #ffffff;
+        }
+
+        .btn-primary {
+            padding: 12px;
+            font-weight: 600;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #0d6efd, #0dcaf0);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+        }
+
+        .btn-outline-primary {
+            border-radius: 10px;
+            font-weight: 600;
+            background-color: #ffffff;
+        }
+
+        .form-check-input {
+            background-color: #ffffff;
+            border: 2px solid #e9ecef;
+        }
+
+        .form-check-input:checked {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+        .invalid-feedback {
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        hr {
+            margin: 30px 0;
+            opacity: 0.1;
+        }
+
+        .text-muted {
+            transition: color 0.3s ease;
+        }
+
+        .text-muted:hover {
+            color: #0d6efd !important;
+            text-decoration: none;
+        }
+
+        /* Password strength indicator */
+        .password-strength {
+            height: 4px;
+            margin-top: 10px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+        }
+
+        .strength-weak {
+            background: #dc3545;
+            width: 30%;
+        }
+
+        .strength-medium {
+            background: #ffc107;
+            width: 60%;
+        }
+
+        .strength-strong {
+            background: #198754;
+            width: 100%;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom styles for password toggle button */
+        .input-group .btn-outline-secondary {
+            border-color: #e9ecef;
+            color: #6c757d;
+            background-color: #ffffff;
+        }
+
+        .input-group .btn-outline-secondary:hover {
+            background-color: #f8f9fa;
+            color: #0d6efd;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 576px) {
+            .card-body {
+                padding: 20px;
+            }
+            
+            .signup-container {
+                margin: 10px;
+            }
+            
+            .row {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="signup-container">
+            <h1 class="brand-title">Evaluator's Hub</h1>
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Create Account</h4>
+                    <form id="signupForm" class="needs-validation" novalidate>
+                        <!-- Add loading spinner -->
+                        <div id="loadingSpinner" class="d-none text-center mb-3">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" 
+                                    pattern="[A-Za-z]{2,}" 
+                                    required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid first name (minimum 2 letters)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" 
+                                    pattern="[A-Za-z]{2,}" 
+                                    required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid last name (minimum 2 letters)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="signupEmail" 
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+                                required>
+                            <div class="invalid-feedback">
+                                Please enter a valid email address
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="signupPassword" 
+                                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+                                    required>
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            <div class="invalid-feedback">
+                                Password must be at least 8 characters with letters and numbers
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                            <div class="invalid-feedback">
+                                Passwords do not match
+                            </div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                            <label class="form-check-label" for="termsCheck">
+                                I agree to the Terms and Conditions
+                            </label>
+                            <div class="invalid-feedback">
+                                You must agree to the terms and conditions
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Create Account</button>
+                    </form>
+                    <hr>
+                    <div class="text-center">
+                        <p class="mb-0">Already have an account?</p>
+                        <a href="login.html" class="btn btn-outline-primary mt-2">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Config -->
+    <script src="js/config.js"></script>
+    <!-- Auth -->
+    <script src="js/auth.js"></script>
+    <!-- Validation -->
+    <script src="js/validation.js"></script>
+    <script>
+        // Toast function for showing messages
+        function showToast(message) {
+            // Create toast container if it doesn't exist
+            let toastContainer = document.getElementById('toastContainer');
+            if (!toastContainer) {
+                toastContainer = document.createElement('div');
+                toastContainer.id = 'toastContainer';
+                toastContainer.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 1050;';
+                document.body.appendChild(toastContainer);
+            }
+
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = 'toast show';
+            toast.style.cssText = 'min-width: 200px;';
+            toast.innerHTML = `
+                <div class="toast-header">
+                    <strong class="me-auto">Notification</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">${message}</div>
+            `;
+
+            // Add toast to container
+            toastContainer.appendChild(toast);
+
+            // Remove toast after 5 seconds
+            setTimeout(() => {
+                toast.remove();
+            }, 5000);
+        }
+
+        // Only check auth for non-auth pages
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.checkAuth() && !window.location.pathname.includes('auth')) {
+                window.location.href = 'index.html';
+            }
+        });
+
+        // Password toggle functionality
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('signupPassword');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+        });
+
+        // Form validation and submission
+        document.getElementById('signupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!this.checkValidity()) {
+                e.stopPropagation();
+                this.classList.add('was-validated');
+                return;
+            }
+
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPassword').setCustomValidity("Passwords don't match");
+                document.getElementById('confirmPassword').reportValidity();
+                return;
+            }
+
+            try {
+                // Show loading
+                document.getElementById('loadingSpinner').classList.remove('d-none');
+
+                // Get form data
+                const userData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('signupEmail').value,
+                    password: password
+                };
+
+                // Call register function from auth.js
+                await window.register(userData);
+
+                // Redirect to login after successful signup
+                window.location.href = 'login.html?signup=success';
+            } catch (error) {
+                showToast(error.message || 'Signup failed. Please try again.');
+            } finally {
+                // Hide loading
+                document.getElementById('loadingSpinner').classList.add('d-none');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicles - Evaluator's Hub</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Auth JS -->
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+</head>
+<body>
+    <!-- Include the navbar here (same as index.html) -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-chart-line text-primary me-2"></i>Evaluator's Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Dashboard
+                            
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-tasks me-1"></i>Evaluations
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="evaluations.html">All Evaluations</a></li>
+                            <li><a class="dropdown-item" href="evaluations.html#pending">Pending</a></li>
+                            <li><a class="dropdown-item" href="evaluations.html#completed">Completed</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-primary" href="evaluations.html#new">
+                                <i class="fas fa-plus me-2"></i>New Evaluation
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-coins me-1"></i>Assets
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="assets.html">All Assets</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="metals.html">
+                                <i class="fas fa-coins me-2"></i>Precious Metals
+                            </a></li>
+                            <li><a class="dropdown-item" href="jewelry.html">
+                                <i class="fas fa-gem me-2"></i>Jewelry & Diamonds
+                            </a></li>
+                            <li><a class="dropdown-item" href="property.html">
+                                <i class="fas fa-home me-2"></i>Properties
+                            </a></li>
+                            <li><a class="dropdown-item" href="vehicles.html">
+                                <i class="fas fa-car me-2"></i>Vehicles
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-primary" href="assets.html#new">
+                                <i class="fas fa-plus me-2"></i>Add New Asset
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="reports.html">
+                            <i class="fas fa-file-alt me-1"></i>Reports
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i>
+                            <span id="currentUserName">Loading...</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.html">
+                                <i class="fas fa-id-card me-2"></i>Profile
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2><i class="fas fa-car me-2 text-danger"></i>Vehicles</h2>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVehicleModal">
+                <i class="fas fa-plus me-2"></i>Add New Vehicle
+            </button>
+        </div>
+
+        <!-- Vehicle Categories -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-car-side fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Luxury Cars</h5>
+                        <p class="text-muted">Premium Vehicles</p>
+                        <button class="btn btn-outline-primary" onclick="showVehicleDetails('luxury')">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-truck fa-3x text-success mb-3"></i>
+                        <h5 class="card-title">Commercial</h5>
+                        <p class="text-muted">Transport Vehicles</p>
+                        <button class="btn btn-outline-primary" onclick="showVehicleDetails('commercial')">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-motorcycle fa-3x text-warning mb-3"></i>
+                        <h5 class="card-title">Two Wheelers</h5>
+                        <p class="text-muted">Bikes & Scooters</p>
+                        <button class="btn btn-outline-primary" onclick="showVehicleDetails('two_wheeler')">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-truck-monster fa-3x text-danger mb-3"></i>
+                        <h5 class="card-title">Special Vehicles</h5>
+                        <p class="text-muted">Heavy Equipment</p>
+                        <button class="btn btn-outline-primary" onclick="showVehicleDetails('special')">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Value Trends Chart -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Vehicle Value Trends</h5>
+                <div class="btn-group mb-3">
+                    <button class="btn btn-outline-primary active" onclick="updateChart('1Y')">1Y</button>
+                    <button class="btn btn-outline-primary" onclick="updateChart('3Y')">3Y</button>
+                    <button class="btn btn-outline-primary" onclick="updateChart('5Y')">5Y</button>
+                    <button class="btn btn-outline-primary" onclick="updateChart('10Y')">10Y</button>
+                </div>
+                <div class="chart-container" style="height: 400px;">
+                    <canvas id="vehicleValueChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vehicle Inventory Table -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Vehicle Inventory</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Vehicle</th>
+                                <th>Type</th>
+                                <th>Model Year</th>
+                                <th>Registration</th>
+                                <th>Purchase Date</th>
+                                <th>Purchase Price</th>
+                                <th>Current Value</th>
+                                <th>Depreciation</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vehicleInventoryList">
+                            <!-- JavaScript will populate this -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Vehicle Modal -->
+    <div class="modal fade" id="addVehicleModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Vehicle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addVehicleForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Vehicle Type</label>
+                                <select class="form-select" required>
+                                    <option value="">Select Type</option>
+                                    <option value="luxury_car">Luxury Car</option>
+                                    <option value="commercial">Commercial Vehicle</option>
+                                    <option value="two_wheeler">Two Wheeler</option>
+                                    <option value="special">Special Vehicle</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Make & Model</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Model Year</label>
+                                <input type="number" class="form-control" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Registration Number</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Fuel Type</label>
+                                <select class="form-select" required>
+                                    <option value="petrol">Petrol</option>
+                                    <option value="diesel">Diesel</option>
+                                    <option value="electric">Electric</option>
+                                    <option value="hybrid">Hybrid</option>
+                                    <option value="cng">CNG</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Purchase Date</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Purchase Price (₹)</label>
+                                <input type="number" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Odometer Reading (km)</label>
+                                <input type="number" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Insurance Valid Until</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Vehicle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Config and Auth -->
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <!-- Custom JS -->
+    <script src="../js/vehicles.js"></script>
+</body>
+</html>

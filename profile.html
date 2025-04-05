@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Evaluator's Hub</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Config JS -->
+    <script src="js/config.js"></script>
+    <!-- User Context JS -->
+    <script src="js/userContext.js"></script>
+</head>
+<body class="bg-light">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-chart-line text-primary me-2"></i>Evaluator's Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-tasks me-1"></i>Evaluations
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="evaluations.html">All Evaluations</a></li>
+                            <li><a class="dropdown-item" href="evaluations.html#pending">Pending</a></li>
+                            <li><a class="dropdown-item" href="evaluations.html#completed">Completed</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-primary" href="evaluations.html#new">
+                                <i class="fas fa-plus me-2"></i>New Evaluation
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-coins me-1"></i>Assets
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="assets.html">All Assets</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="metals.html">
+                                <i class="fas fa-coins me-2"></i>Precious Metals
+                            </a></li>
+                            <li><a class="dropdown-item" href="jewelry.html">
+                                <i class="fas fa-gem me-2"></i>Jewelry & Diamonds
+                            </a></li>
+                            <li><a class="dropdown-item" href="property.html">
+                                <i class="fas fa-home me-2"></i>Properties
+                            </a></li>
+                            <li><a class="dropdown-item" href="vehicles.html">
+                                <i class="fas fa-car me-2"></i>Vehicles
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-primary" href="assets.html#new">
+                                <i class="fas fa-plus me-2"></i>Add New Asset
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-file-alt me-1"></i>Reports
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="reports.html">All Reports</a></li>
+                            <li><a class="dropdown-item" href="reports.html#performance">Performance Reports</a></li>
+                            <li><a class="dropdown-item" href="reports.html#asset">Asset Reports</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-primary" href="reports.html#new">
+                                <i class="fas fa-plus me-2"></i>Generate New Report
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i>
+                            <span id="currentUserName">Loading...</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.html">
+                                <i class="fas fa-id-card me-2"></i>Profile
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <img src="https://via.placeholder.com/150" class="rounded-circle shadow-sm profile-picture" 
+                             style="width: 150px; height: 150px; object-fit: cover;" alt="Profile Picture" id="profilePicture">
+                        <button class="btn btn-sm btn-primary position-absolute bottom-0 end-0 rounded-circle p-2 profile-picture-btn">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                        <h4 class="mb-1 profile-name" id="displayName"></h4>
+                        <p class="text-muted mb-3 profile-role"><i class="fas fa-user-tie me-2"></i><span id="displayRole"></span></p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <span class="badge level-badge bg-primary-subtle text-primary" id="displayLevel"></span>
+                            <span class="badge status-badge bg-success-subtle text-success" id="displayStatus"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Profile Information</h5>
+                        <form id="profileForm">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" name="firstName" class="form-control form-control-lg" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" name="lastName" class="form-control form-control-lg" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="email" class="form-control form-control-lg" required readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Department</label>
+                                <input type="text" name="department" class="form-control form-control-lg" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Role</label>
+                                <select name="role" class="form-select form-select-lg" required>
+                                    <option value="">Select Role</option>
+                                    <option value="Junior Evaluator">Junior Evaluator</option>
+                                    <option value="Senior Evaluator">Senior Evaluator</option>
+                                    <option value="Lead Evaluator">Lead Evaluator</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Change Password</h5>
+                        <form id="passwordForm">
+                            <div class="mb-3">
+                                <label class="form-label">Current Password</label>
+                                <input type="password" name="currentPassword" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">New Password</label>
+                                <input type="password" name="newPassword" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Confirm New Password</label>
+                                <input type="password" name="confirmPassword" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Change Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/userContext.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

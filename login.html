@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Evaluator's Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0d6efd20 0%, #0dcaf020 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 20px auto;
+            animation: slideUp 0.5s ease;
+        }
+        .brand-title {
+            color: #0d6efd;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="login-container">
+            <h1 class="brand-title">Evaluator's Hub</h1>
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Login</h4>
+                    <form id="loginForm" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" name="email" required autocomplete="email">
+                            <div class="invalid-feedback">Please enter a valid email address</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="loginPassword" name="password" required autocomplete="current-password">
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            <div class="invalid-feedback">Please enter your password</div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="forgotPassword.html" class="btn btn-link text-muted p-0">Forgot Password?</a>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <p class="mb-0">Don't have an account?</p>
+                        <a href="signup.html" class="btn btn-outline-primary mt-2">Create Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container position-fixed top-0 end-0 p-3"></div>
+    <div id="loadingSpinner" class="position-fixed top-50 start-50 translate-middle d-none">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/userContext.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        function showToast(message, type = 'error') {
+            const toastContainer = document.getElementById('toastContainer');
+            if (!toastContainer) return;
+
+            const toast = document.createElement('div');
+            toast.className = `toast align-items-center text-white bg-${type === 'success' ? 'success' : 'danger'} border-0`;
+            toast.setAttribute('role', 'alert');
+            toast.setAttribute('aria-live', 'assertive');
+            toast.setAttribute('aria-atomic', 'true');
+
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">${message}</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            `;
+            toastContainer.appendChild(toast);
+            const bsToast = new bootstrap.Toast(toast);
+            bsToast.show();
+
+            toast.addEventListener('hidden.bs.toast', () => {
+                toast.remove();
+            });
+        }
+
+        function toggleLoading(show) {
+            const spinner = document.getElementById('loadingSpinner');
+            if (spinner) {
+                spinner.classList.toggle('d-none', !show);
+            }
+        }
+
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('loginPassword');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            if (!this.checkValidity()) {
+                e.stopPropagation();
+                this.classList.add('was-validated');
+                return;
+            }
+
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            const rememberMe = document.getElementById('rememberMe').checked;
+
+            try {
+                toggleLoading(true);
+                await window.login(email, password);
+
+                if (rememberMe) {
+                    localStorage.setItem('rememberMe', 'true');
+                    localStorage.setItem('savedEmail', email);
+                } else {
+                    localStorage.removeItem('rememberMe');
+                    localStorage.removeItem('savedEmail');
+                }
+
+                showToast('Login successful! Redirecting...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            } catch (error) {
+                showToast(error.message || 'Login failed. Please try again.');
+            } finally {
+                toggleLoading(false);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop().toLowerCase();
+            
+            if (window.checkAuth() && ['login.html', 'signup.html', 'forgotpassword.html'].includes(currentPage)) {
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 50);
+                return;
+            }
+
+            if (localStorage.getItem('rememberMe') === 'true') {
+                const savedEmail = localStorage.getItem('savedEmail');
+                if (savedEmail) {
+                    document.getElementById('loginEmail').value = savedEmail;
+                    document.getElementById('rememberMe').checked = true;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

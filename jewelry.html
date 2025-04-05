@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry & Diamonds - Evaluator's Hub</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Include the navbar here (same as index.html) -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-chart-line text-primary me-2"></i>Evaluator's Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Dashboard
+                            
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-tasks me-1"></i>Evaluations
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="evaluations.html">All Evaluations</a></li>
+                            <li><a class="dropdown-item" href="evaluations.html#pending">Pending</a></li>
+                            <li><a class="dropdown-item" href="evaluations.html#completed">Completed</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-primary" href="evaluations.html#new">
+                                <i class="fas fa-plus me-2"></i>New Evaluation
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-coins me-1"></i>Assets
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="assets.html">All Assets</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="metals.html">
+                                <i class="fas fa-coins me-2"></i>Precious Metals
+                            </a></li>
+                            <li><a class="dropdown-item" href="jewelry.html">
+                                <i class="fas fa-gem me-2"></i>Jewelry & Diamonds
+                            </a></li>
+                            <li><a class="dropdown-item" href="property.html">
+                                <i class="fas fa-home me-2"></i>Properties
+                            </a></li>
+                            <li><a class="dropdown-item" href="vehicles.html">
+                                <i class="fas fa-car me-2"></i>Vehicles
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-primary" href="assets.html#new">
+                                <i class="fas fa-plus me-2"></i>Add New Asset
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="reports.html">
+                            <i class="fas fa-file-alt me-1"></i>Reports
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i>
+                            <span id="currentUserName">Loading...</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.html">
+                                <i class="fas fa-id-card me-2"></i>Profile
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2><i class="fas fa-gem me-2 text-info"></i>Jewelry & Diamonds</h2>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addJewelryModal">
+                <i class="fas fa-plus me-2"></i>Add New Item
+            </button>
+        </div>
+
+        <!-- Categories -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-gem fa-3x text-info mb-3"></i>
+                        <h5 class="card-title">Diamonds</h5>
+                        <p class="text-muted">Current Value: ₹45,000/carat</p>
+                        <button class="btn btn-outline-primary" onclick="showJewelryDetails('diamond')">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-ring fa-3x text-warning mb-3"></i>
+                        <h5 class="card-title">Gold Jewelry</h5>
+                        <p class="text-muted">Based on Gold Rate</p>
+                        <button class="btn btn-outline-primary" onclick="showJewelryDetails('gold')">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-gem fa-3x text-danger mb-3"></i>
+                        <h5 class="card-title">Precious Stones</h5>
+                        <p class="text-muted">Ruby, Sapphire, Emerald</p>
+                        <button class="btn btn-outline-primary" onclick="showJewelryDetails('stones')">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Price History Chart -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Value Trends</h5>
+                <div class="btn-group mb-3">
+                    <button class="btn btn-outline-primary active" onclick="updateChart('1M')">1M</button>
+                    <button class="btn btn-outline-primary" onclick="updateChart('6M')">6M</button>
+                    <button class="btn btn-outline-primary" onclick="updateChart('1Y')">1Y</button>
+                    <button class="btn btn-outline-primary" onclick="updateChart('5Y')">5Y</button>
+                </div>
+                <div class="chart-container" style="height: 400px;">
+                    <canvas id="jewelryValueChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inventory Table -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Jewelry Inventory</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Type</th>
+                                <th>Details</th>
+                                <th>Purchase Date</th>
+                                <th>Purchase Price</th>
+                                <th>Current Value</th>
+                                <th>Appreciation</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="jewelryInventoryList">
+                            <!-- JavaScript will populate this -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Jewelry Modal -->
+    <div class="modal fade" id="addJewelryModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Jewelry Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addJewelryForm">
+                        <div class="mb-3">
+                            <label class="form-label">Item Type</label>
+                            <select class="form-select" required>
+                                <option value="">Select Type</option>
+                                <option value="diamond">Diamond</option>
+                                <option value="gold_jewelry">Gold Jewelry</option>
+                                <option value="precious_stone">Precious Stone</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Item Description</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Weight/Carat</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" required>
+                                <select class="form-select" style="max-width: 100px;">
+                                    <option value="ct">Carat</option>
+                                    <option value="g">Grams</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Purchase Date</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Purchase Price (₹)</label>
+                            <input type="number" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Certificate Number</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Item</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Config and Auth -->
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom JS -->
+    <script src="../js/jewelry.js"></script>
+</body>
+</html>
