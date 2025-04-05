@@ -40,3 +40,29 @@ fetch(`${apiURL}/api/endpoint`, {
   },
   body: JSON.stringify({ data })
 });
+📂 evaluator-hub-frontend/
+├── index.html
+├── login.html
+├── signup.html
+├── reports.html
+├── profile.html
+├── evaluations.html
+├── jewelry.html
+├── property.html
+├── vehicles.html
+├── forgotPassword.html
+├── resetPassword.html
+├── css/
+│   └── style.css
+├── js/
+│   └── main.js
+
+❤️ Acknowledgements
+Made with love for modern evaluation workflows 💎
+Feel free to fork, star, or contribute!
+
+📬 Contact
+Drop your questions, suggestions, or collab requests 😉
+Email: wemayush@gmail.com
+GitHub: @9A-Ayush
+ 
