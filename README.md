@@ -6,7 +6,7 @@ This is the **frontend** of the Evaluator Hub project – a powerful platform to
 
 ## 🌐 Live Preview
 
-Frontend: [Live on Vercel]([https://your-frontend-link.vercel.app](https://evaluator-hub-frnt-git-main-ayushs-projects-aa6e7693.vercel.app/))  
+Frontend: [Live on Vercel]([https://your-frontend-link.vercel.app](https://evaluator-hub-frnt-git-main-ayushs-projects-aa6e7693.vercel.app/)  
 Backend API: [Live on Render](https://evaluator-hub-backend.onrender.com)
 
 ---
@@ -28,18 +28,6 @@ Backend API: [Live on Render](https://evaluator-hub-backend.onrender.com)
 
 ### 🔗 Backend API: `Render`
 
-Make sure API calls inside your JS files use your deployed backend URL like:
-
-```js
-const apiURL = "https://evaluator-hub-backend.onrender.com";
-
-fetch(`${apiURL}/api/endpoint`, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ data })
-});
 📂 evaluator-hub-frontend/
 ├── index.html
 ├── login.html
