@@ -6,7 +6,7 @@ This is the **frontend** of the Evaluator Hub project – a powerful platform to
 
 ## 🌐 Live Preview
 
-Frontend: [Live on Vercel / Netlify](https://your-frontend-link.vercel.app)  
+Frontend: [Live on Vercel]([https://your-frontend-link.vercel.app](https://evaluator-hub-frnt-git-main-ayushs-projects-aa6e7693.vercel.app/))  
 Backend API: [Live on Render](https://evaluator-hub-backend.onrender.com)
 
 ---
@@ -75,12 +75,37 @@ fetch(`${apiURL}/api/endpoint`, {
 │   ├── validation.js
 │   └── vehicles.js
 
+## 💻 GitHub Repo
+[Frontend GitHub](https://github.com/9A-Ayush/evaluator_hub-frnt.git)
+[Backend GitHub](https://github.com/9A-Ayush/evaluator_hub_Backend.git)
+
+## 🛠️ Tech Stack
+- HTML, CSS, JavaScript
+- API Integration with Backend (Express + MongoDB)
+- Vercel for deployment
+
+
+## 🔐 Authentication
+- Register/Login with token-based authentication
+- Context API for user session management
+
+## 📦 Features
+- User Dashboard for navigation
+- Evaluation Modules (Property, Jewelry, etc.)
+- View/Generate Reports
+- Forgot/Reset Password
+
+## 🌐 Deployment
+- Frontend is deployed on **Vercel**
+
+
 ❤️ Acknowledgements
 Made with love for modern evaluation workflows 💎
 Feel free to fork, star, or contribute!
 
 📬 Contact
 Drop your questions, suggestions, or collab requests 😉
-Email: wemayush@gmail.com
 GitHub: [@9A-Ayush](https://github.com/9A-Ayush)
+© 2025 [Ayush](https://www.instagram.com/ayush_ix_xi/?next=%2F) • Contact: weyayush@gmail.com
+
  
