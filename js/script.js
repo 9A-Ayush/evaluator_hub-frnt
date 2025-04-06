@@ -1,8 +1,11 @@
+// Base API URL
+const baseUrl = 'https://evaluator-hub-backend.onrender.com/api';
+
 // Function to fetch evaluations from the API
 async function fetchEvaluations() {
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://127.0.0.1:5001/evaluations', {
+        const response = await fetch(`${baseUrl}/evaluations`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -60,7 +63,7 @@ document.getElementById('evaluationForm')?.addEventListener('submit', async func
         };
 
         const token = localStorage.getItem('token');
-        const response = await fetch('http://127.0.0.1:5001/evaluations', {
+        const response = await fetch(`${baseUrl}/evaluations`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -87,7 +90,7 @@ document.getElementById('evaluationForm')?.addEventListener('submit', async func
 async function viewEvaluation(id) {
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://127.0.0.1:5001/evaluations/${id}`, {
+        const response = await fetch(`${baseUrl}/evaluations/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -108,7 +111,7 @@ async function deleteEvaluation(id) {
     
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://127.0.0.1:5001/evaluations/${id}`, {
+        const response = await fetch(`${baseUrl}/evaluations/${id}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
